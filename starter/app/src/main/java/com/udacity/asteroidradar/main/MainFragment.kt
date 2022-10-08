@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
         binding.asteroidRecycler.adapter=adapter;
 
         viewModel.asteroidArray.observe(viewLifecycleOwner, Observer {
-            adapter.data=it;
+            adapter.submitList(it);
             Toast.makeText(activity,it.size.toString(), Toast.LENGTH_SHORT).show()
         })
 
