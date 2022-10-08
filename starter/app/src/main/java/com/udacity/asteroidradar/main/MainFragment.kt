@@ -24,6 +24,14 @@ class MainFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        val adapter = AstroidAdapter();
+        binding.asteroidRecycler.adapter=adapter;
+
+        viewModel.asteroidArray.observe(viewLifecycleOwner, Observer {
+            adapter.data=it;
+            Toast.makeText(activity,it.size.toString(), Toast.LENGTH_SHORT).show()
+        })
+
         return binding.root
     }
 
