@@ -5,14 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.NasaApi
+import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class MainViewModel : ViewModel() {
     private val _pictureOfDay = MutableLiveData<PictureOfDay>();
     val pictureOfDay: LiveData<PictureOfDay>
         get() = _pictureOfDay
+    private val _asteroidArray = MutableLiveData<List<Asteroid>>()
+    val asteroidArray: LiveData<List<Asteroid>>
+        get() = _asteroidArray
+
     init {
         getImageOfTheDay()
         getAsteroid()
@@ -20,8 +27,9 @@ class MainViewModel : ViewModel() {
 
     private fun getAsteroid() {
         viewModelScope.launch {
-            val x = NasaApi.retrofitService.getAsteroid()
-            Log.d("Adham", x.toString())
+            val response = NasaApi.retrofitService.getAsteroid()
+            val json = JSONObject(response)
+            _asteroidArray.value= parseAsteroidsJsonResult(json)
         }
     }
 
