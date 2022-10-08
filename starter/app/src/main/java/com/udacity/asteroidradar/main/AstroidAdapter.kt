@@ -28,7 +28,7 @@ class AstroidAdapter : ListAdapter<Asteroid, AsteroidViewHolder>(AstroidDiffCall
 class AsteroidViewHolder private constructor(val binding: ListItemAstroidBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(asteroid: Asteroid) {
-        binding.name.text=asteroid.codename
+        binding.asteroid= asteroid;
     }
 
     companion object {
