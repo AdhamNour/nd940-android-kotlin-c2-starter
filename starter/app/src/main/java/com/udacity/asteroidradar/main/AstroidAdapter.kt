@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.databinding.ListItemAstroidBinding
 
 class AstroidAdapter : ListAdapter<Asteroid, AsteroidViewHolder>(AstroidDiffCallback()) {
 
@@ -24,19 +25,17 @@ class AstroidAdapter : ListAdapter<Asteroid, AsteroidViewHolder>(AstroidDiffCall
 
 }
 
-class AsteroidViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val nameTextView = itemView.findViewById<TextView>(R.id.name)
+class AsteroidViewHolder private constructor(val binding: ListItemAstroidBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(asteroid: Asteroid) {
-        nameTextView.text = asteroid.codename
+        binding.name.text=asteroid.codename
     }
 
     companion object {
         fun from(parent: ViewGroup): AsteroidViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val view = layoutInflater
-                .inflate(R.layout.astroid_list_itm, parent, false)
-            return AsteroidViewHolder(view)
+            val binding = ListItemAstroidBinding.inflate(layoutInflater, parent, false)
+            return AsteroidViewHolder(binding)
         }
     }
 }
