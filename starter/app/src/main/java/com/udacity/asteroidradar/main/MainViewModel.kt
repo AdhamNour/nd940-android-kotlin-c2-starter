@@ -19,7 +19,9 @@ class MainViewModel : ViewModel() {
     private val _asteroidArray = MutableLiveData<List<Asteroid>>()
     val asteroidArray: LiveData<List<Asteroid>>
         get() = _asteroidArray
-
+    private val _navigateToAsteroidDetails = MutableLiveData<Long>()
+    val navigateToAsteroidDetails
+        get() = _navigateToAsteroidDetails
     init {
         getImageOfTheDay()
         getAsteroid()
@@ -37,5 +39,12 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             _pictureOfDay.value = NasaApi.retrofitService.getImageOfTheDay()
         }
+    }
+
+    fun onAsteroidClicked(id:Long){
+        _navigateToAsteroidDetails.value=id;
+    }
+    fun onAsteroidNavigated() {
+        _navigateToAsteroidDetails.value = null
     }
 }

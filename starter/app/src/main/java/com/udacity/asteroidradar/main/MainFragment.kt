@@ -1,11 +1,13 @@
 package com.udacity.asteroidradar.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
@@ -24,13 +26,14 @@ class MainFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        val adapter = AstroidAdapter();
-        binding.asteroidRecycler.adapter=adapter;
-
+        val adapter = AstroidAdapter(AsteroidClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+        });
         viewModel.asteroidArray.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it);
-            Toast.makeText(activity,it.size.toString(), Toast.LENGTH_SHORT).show()
+            adapter.submitList(it)
+
         })
+        binding.asteroidRecycler.adapter=adapter;
 
         return binding.root
     }
