@@ -30,6 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@{asteroid.codename}"
+            android:contentDescription="@{asteroid.codename}"
             tools:text="codeName" />
 
         <TextView
@@ -44,6 +45,7 @@
             app:layout_constraintStart_toStartOf="@+id/name"
             app:layout_constraintTop_toBottomOf="@+id/name"
             android:text="@{asteroid.closeApproachDate}"
+            android:contentDescription="@{asteroid.closeApproachDate}"
             tools:text="closeApproachDate" />
 
         <ImageView
