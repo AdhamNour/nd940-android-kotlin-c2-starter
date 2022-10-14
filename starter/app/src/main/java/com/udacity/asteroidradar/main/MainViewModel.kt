@@ -24,14 +24,9 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     init {
         getImageOfTheDay()
-        getAsteroid()
     }
 
-    private fun getAsteroid() {
-        viewModelScope.launch {
-            asteroidRepository.refreshAsteroids()
-        }
-    }
+
 
     private fun getImageOfTheDay() {
         viewModelScope.launch {

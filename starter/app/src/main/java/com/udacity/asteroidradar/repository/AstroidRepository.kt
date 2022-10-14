@@ -30,8 +30,8 @@ class AstroidRepository(private val database: AsteroidDatabase) {
                 val json = JSONObject(response)
                 val asteroids = parseAsteroidsJsonResult(json)
                 database.astroidDao.insertAll(*asteroids.asDatabaseAstroid())
-            } catch (e: Exception) {
-                Timber.d("refreshAsteroids: " + e.message)
+            } catch (_: Exception) {
+
             }
         }
     }
