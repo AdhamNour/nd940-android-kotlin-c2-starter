@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -57,14 +58,14 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("codeName")
-fun bindCodeName(txtView:TextView,codeName: String?){
+fun bindCodeName(txtView:View,codeName: String?){
     codeName?.let {
         txtView.contentDescription="The code name of this asteroid is $codeName"
     }
 }
 
 @BindingAdapter("closeApproachDate")
-fun bindCloseApproachDate(txtView:TextView,closeApproachDate: String?){
+fun bindCloseApproachDate(txtView: View, closeApproachDate: String?){
     closeApproachDate?.let {
         txtView.contentDescription="The close approach date of this asteroid is $closeApproachDate"
     }
