@@ -11,6 +11,7 @@ import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.repository.AstroidRepository
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import timber.log.Timber
 
 class MainViewModel (application: Application) : AndroidViewModel(application) {
     private val _pictureOfDay = MutableLiveData<PictureOfDay>();
@@ -34,7 +35,11 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     private fun getImageOfTheDay() {
         viewModelScope.launch {
-            _pictureOfDay.value = NasaApi.retrofitService.getImageOfTheDay()
+            _pictureOfDay.value = try {
+                NasaApi.retrofitService.getImageOfTheDay()
+            }catch(e: Exception) {
+                PictureOfDay("error","Connection Error","")
+            }
         }
     }
 
