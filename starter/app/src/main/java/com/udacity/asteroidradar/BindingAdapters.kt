@@ -10,8 +10,12 @@ import com.squareup.picasso.Picasso
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        imageView.contentDescription = "This asteroid is hazardous"
+
     } else {
         imageView.setImageResource(R.drawable.ic_status_normal)
+        imageView.contentDescription = "This asteroid is not hazardous"
+
     }
 }
 
@@ -51,3 +55,18 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .into(imgView)
     }
 }
+
+@BindingAdapter("codeName")
+fun bindCodeName(txtView:TextView,codeName: String?){
+    codeName?.let {
+        txtView.contentDescription="The code name of this asteroid is $codeName"
+    }
+}
+
+@BindingAdapter("closeApproachDate")
+fun bindCloseApproachDate(txtView:TextView,closeApproachDate: String?){
+    closeApproachDate?.let {
+        txtView.contentDescription="The close approach date of this asteroid is $closeApproachDate"
+    }
+}
+
