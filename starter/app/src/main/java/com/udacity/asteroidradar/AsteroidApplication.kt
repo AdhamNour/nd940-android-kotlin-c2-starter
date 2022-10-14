@@ -2,6 +2,7 @@ package com.udacity.asteroidradar
 
 import android.app.Application
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.work.*
 import com.udacity.asteroidradar.work.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit
 
 class AsteroidApplication : Application() {
     private val applicationScope = CoroutineScope(Dispatchers.Default)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -22,12 +24,13 @@ class AsteroidApplication : Application() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun delayInit() {
         applicationScope.launch {
 
             val constraints = Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .setRequiresBatteryNotLow(true)
+                .setRequiredNetworkType(NetworkType.UNMETERED)
+                .setRequiresBatteryNotLow(true).setRequiresCharging(true).setRequiresDeviceIdle(true)
                 .apply {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         setRequiresDeviceIdle(true)
