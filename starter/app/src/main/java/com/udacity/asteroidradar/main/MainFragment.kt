@@ -24,7 +24,6 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        setHasOptionsMenu(true)
 
         val adapter = AstroidAdapter(AsteroidClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
@@ -38,12 +37,5 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
-    }
 }
