@@ -45,6 +45,9 @@ class AsteroidApplication : Application() {
                 ExistingPeriodicWorkPolicy.KEEP,
                 repeatingRequest
             )
+
+            val loadAsteroidRequest = OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
+            WorkManager.getInstance().enqueue(loadAsteroidRequest)
         }
     }
 }

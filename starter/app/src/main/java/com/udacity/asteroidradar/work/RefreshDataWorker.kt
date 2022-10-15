@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.repository.AstroidRepository
+import timber.log.Timber
 
 class RefreshDataWorker(appContext: Context, params: WorkerParameters):
     CoroutineWorker(appContext, params) {

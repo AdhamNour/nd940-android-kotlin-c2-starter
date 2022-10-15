@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/main_image"
             app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,13 +42,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:closeApproachDate="@{asteroid.closeApproachDate}"
+
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/close_approach_data_title"
-                        android:contentDescription="@string/close_approach_data_title"
                         android:textColor="@color/default_text_color" />
 
                     <TextView
@@ -58,7 +58,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@{asteroid.closeApproachDate}"
-                        android:contentDescription="@{asteroid.closeApproachDate}"
                         android:textColor="@color/default_text_color"
                         tools:text="2020-02-01" />
                 </LinearLayout>
